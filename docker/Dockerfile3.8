@@ -1,0 +1,16 @@
+FROM centos:centos7
+
+# 设置时区为CST
+ENV TZ="Asia/Shanghai"
+# 设置编码
+ENV LANG en_US.utf8
+
+
+RUN yum install -y centos-release-scl \
+    && yum install -y rh-python38 which \
+    && ln -s /opt/rh/rh-python38/root/usr/bin/python3 /usr/bin/python3 \
+    && ln -s /opt/rh/rh-python38/root/usr/bin/pip3 /usr/bin/pip3 \
+    && yum install python-pip \
+    && pip3 install --upgrade pip \
+    && echo "export PYTHONIOENCODING=utf-8" >> ~/.bashrc
+
